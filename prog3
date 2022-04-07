@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<math.h>
+int n,r;
+struct frame
+{
+char ack;
+int data;
+}frm[10];
+void resend(int i);                                                                                                                   
+void recv(int i);
+void main()
+{
+int i;
+printf("\n enter the number of packets to be send :\n");
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+printf("enter the data for the packets (%d): \n",i);
+scanf("%d",&frm[i].data);
+frm[i].ack= 'y';
+recv(i);
+}
+getch();
+}
+void recv(int i)
+{
+rand();
+r=rand()%2;
+if(r ==1)
+{
+frm[r].ack='n';
+resend(r);
+}
+else
+printf("\n ack  recieved successfully\n");
+}
+void resend(int i)
+{
+if(frm[i].ack=='n')
+{
+printf("\n resending\n");
+printf("\n loading\n");
+frm[i].ack='y';
+printf("ack received successfully");
+}
+}
